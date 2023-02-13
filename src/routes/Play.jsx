@@ -12,8 +12,9 @@ export const Play = () => {
   };
   const { random, setRandom, objQ, setObjQ } = useContext(Provider);
   const [characters, setCharacters] = useState(createItem());
+  
 
-  const showCharacters = (event) => {
+  const showCharacters = (event, item) => {
     setCharacters(
       characters.map((element) => {
         if (element.item === event.target.innerText) {
@@ -22,8 +23,20 @@ export const Play = () => {
         return element;
       })
     );
+    
+    paintLetter(item);
+    
   };
+  function paintLetter(item) {
+    let obj = characters.find((element) => element.item === item.letter);
+    if (obj) {
+      item.bg = "bg-green-500";
+    } else {
+      item.bg = "bg-red-800";
+    }
+  }
 
+ 
   return (
     <div className="p-16">
       <div className=" border-spacing-1 mx-auto bg-gradient-to-r from-green-300 via-green-700 flex flex-col items-center text-white max-w-screen-xl h-[800px] pt-20 shadow-2xl rounded-xl">
@@ -42,14 +55,15 @@ export const Play = () => {
           })}
         </div>
         <div className=" KeyBoard w-[700px] flex flex-wrap gap-2 justify-center">
+          {/*  bg-green-900 */}
           {KeyBoard.map((item, index) => {
             return (
               <button
-                onClick={(e) => showCharacters(e)}
+                onClick={(e) => showCharacters(e, item)}
                 key={index}
-                className="border w-10 h-10 flex items-center justify-center bg-green-900  hover:bg-green-500  text-white font-semibold rounded-lg shadow-xl"
+                className={` w-10 h-10 flex items-center justify-center ${item.bg} hover:bg-green-500  text-white font-semibold rounded-lg shadow-xl`}
               >
-                <p className="">{item}</p>
+                <p className="">{item.letter}</p>
               </button>
             );
           })}

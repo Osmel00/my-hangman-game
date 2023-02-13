@@ -41,7 +41,7 @@ export const ObjQuestions = [
   },
 ];
 
-export const KeyBoard = [
+export const KeyBoard1 = [
   "A",
   "B",
   "C",
@@ -69,3 +69,5 @@ export const KeyBoard = [
   "Y",
   "Z",
 ];
+
+export const KeyBoard = [{ letter: "A",  bg: null },{ letter: "B",  bg: null }, { letter: "C",  bg: null }, { letter: "D",  bg: null }, { letter: "E",  bg: null }, { letter: "F",  bg: null }, { letter: "G",  bg: null }, { letter: "H",  bg: null }, { letter: "I",  bg: null }, { letter: "J",  bg: null }, { letter: "K",  bg: null }, { letter: "L",  bg: null }, { letter: "M",  bg: null }, { letter: "N",  bg: null }, { letter: "O",  bg: null }, { letter: "P",  bg: null }, { letter: "Q",  bg: null }, { letter: "R",  bg: null }, { letter: "S",  bg: null }, { letter: "T",  bg: null }, { letter: "U",  bg: null }, { letter: "V",  bg: null }, { letter: "W",  bg: null },{ letter: "X",  bg: null }, { letter: "Y",  bg: null }, { letter: "Z",  bg: null }, ];

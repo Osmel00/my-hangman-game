@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export  const Home = () => {
 
   return (
-    <div className=' rounded-xl bg-gradient-to-r from-green-300 via-green-700 shadow-xl w-3/4 max-w-7xl  h-[600px] mx-auto flex items-center mt-40 p-14'>
+    <div className=' rounded-xl bg-gradient-to-r from-green-300 via-green-700 shadow-xl w-3/4 max-w-7xl  h-[600px] mx-auto flex items-center  p-14'>
        <div className=''>
            <h1 className='text-5xl font-[800] mb-6 text-green-900'>Hangman Game</h1>
            <p className='text-xl mb-12 pr-40 text-green-900 '>Hangman is a guessing game for two or more players. One player thinks of a word, phrase or sentence and the other(s) tries to guess it by suggesting letters within a certain number of guesses.</p>

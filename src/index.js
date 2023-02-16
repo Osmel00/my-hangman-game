@@ -18,35 +18,35 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-    ],
-  },
-  {
-    path: "/play",
-    element: <Play />,
-    children:[
       {
-        path:"/play/:idfoto",
-        element: <Images/>
-      }
+        path: "/play",
+        element: <Play />,
+        children: [
+          {
+            path: "/play/:idfoto",
+            element: <Images />,
+          },
+        ],
+      },
+      {
+        path: "/end",
+        element: <EndPlay />,
+      },
+      {
+        path: "/winner",
+        element: <Winner />,
+      },
     ],
   },
-  {
-    path:"/end",
-    element:<EndPlay/>,
-    
-  },
-  {
-    path:"/winner",
-    element:<Winner/>,
-    
-  },
+  
+ 
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
- // <React.StrictMode>
-      <Contexto>
-        <RouterProvider router={router} />
-    </Contexto>
+  // <React.StrictMode>
+  <Contexto>
+    <RouterProvider router={router} />
+  </Contexto>
   //</React.StrictMode>
 );

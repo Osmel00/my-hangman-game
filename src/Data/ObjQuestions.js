@@ -74,7 +74,7 @@ export const KeyBoard = [{ letter: "A",  bg: null },{ letter: "B",  bg: null }, 
 
 export const objFotos =['el_ahorcado1.png','el_ahorcado2.png','el_ahorcado3.png','el_ahorcado4.png','el_ahorcado5.png','el_ahorcado6.png']
 
-/*export const ObjQuestions = [
+export const ObjQuestions = [
   {
     pregunta: "What is the largest planet in the solar system?",
     palabro: "Jupiter"
@@ -115,20 +115,5 @@ export const objFotos =['el_ahorcado1.png','el_ahorcado2.png','el_ahorcado3.png'
     pregunta: "What is the largest country by land area in the world?",
     palabro: "RUSSIA"
   }
-];*/
-
-export const ObjQuestions = [
-  {
-    pregunta: "What is the largest planet in the solar system?",
-    palabro: "Jupiter"
-  },
-  {
-    pregunta: "What is the capital of France?",
-    palabro: "Paris"
-  },
-  {
-    pregunta: "What is the fastest animal in the world?",
-    palabro: "Cheetah"
-  },
-
 ];
+

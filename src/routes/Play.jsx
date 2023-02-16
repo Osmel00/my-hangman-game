@@ -1,18 +1,31 @@
 import { KeyBoard } from "../Data/ObjQuestions.js";
-import { React, useContext, useEffect, useState } from "react";
+import { React, useContext, useEffect } from "react";
 import { Provider } from "./context/Contexto.jsx";
-import { Outlet, Link, useNavigate } from "react-router-dom";
-
-
-//////////********* */ tengo que pintar de verde todas las teclas de nuevo ***********//////////////
+import { Outlet, useNavigate } from "react-router-dom";
 
 export const Play = () => {
+  const {
+    random,
+    objQ,
+    characters,
+    setCharacters,
+    count,
+    setCount,
+    setRandom,
+    setObjQ,
+    setShowChaOld,
+  } = useContext(Provider);
+
   const createItem = () => {
     let arr = [];
-    console.log(objQ);
-    
+    let newrandom = random;
+   
 
-    objQ[random].palabro.split("").forEach((item) => {
+    if (random !== 0 && random === objQ.length) {
+      newrandom--;
+    }
+
+    objQ[newrandom].palabro.split("").forEach((item) => {
       arr.push({ item, ["Visible"]: false });
     });
     return arr;
@@ -23,17 +36,6 @@ export const Play = () => {
       setRandom(Math.floor(Math.random() * objQ.length));
     }
   };
-  const {
-    random,
-    objQ,
-    characters,
-    setCharacters,
-    count,
-    setCount,
-    setRandom,
-    setObjQ,
-  } = useContext(Provider);
-  //const [copyObj,setCopyObj] = useState(objQ.map(item=>item))
   const navigate = useNavigate();
   useEffect(() => {
     createRandom();
@@ -47,26 +49,28 @@ export const Play = () => {
     setCharacters(createItem());
   }, [random]);
 
-   useEffect(() => {
-    if (goWins()) {
-  //     objQ.splice(random, 1);
-      setCharacters([]);
-       navigate("/winner");
+  const goWins = () => {
+    let flag = true;
+    if (characters.length === 0) {
+      return false;
     }
-   });
-
-   const goWins = () => {
-     let flag = true;
-     if (characters.length === 0) {
-       return false;
-     }
     for (const key in characters) {
-       if (characters[key].Visible === false) {
-         flag = false;
-       }
-     }
-     return flag;
-   };
+      if (characters[key].Visible === false) {
+        flag = false;
+      }
+    }
+
+    return flag;
+  };
+  useEffect(() => {
+    if (goWins()) {
+      objQ.splice(random, 1);
+      let newarr = [...objQ];
+      setObjQ(newarr);
+      setCharacters([]);
+      navigate("/winner");
+    }
+  }, [characters]);
 
   const showCharacters = (event, item) => {
     setCharacters(
@@ -77,6 +81,17 @@ export const Play = () => {
         return element;
       })
     );
+
+    if (count > 4) {
+      navigate("/end");
+      objQ.splice(random, 1);
+      let newarr = [...objQ];
+      setObjQ(newarr);
+      setShowChaOld([...characters]);
+      setCharacters([]);
+    } else {
+      navigate(`/play/${item.letter}`);
+    }
 
     paintLetter(item);
   };
@@ -90,18 +105,14 @@ export const Play = () => {
   }
 
   return (
-    <div className="p-16">
+    <div className="w-[1300px] min-h-max  mx-auto">
       <div className=" border-spacing-1 mx-auto bg-gradient-to-r from-green-300 via-green-700 flex flex-col items-center text-white max-w-screen-xl h-[800px] pt-20 shadow-2xl rounded-xl">
         <p className=" text-center title text-5xl pb-10 text-green-900 font-semibold">
-          
-           {objQ[random].pregunta}
-          {/* {objQ.length === 0
-            ? null
-            : objQ.length <= random
+          {objQ.length <= random
             ? objQ[random - 1].pregunta
-            : objQ[random].pregunta}{" "} */}
+            : objQ[random].pregunta}
         </p>
-        {/* {ObjQuestions[5].pregunta} */}
+
         <div className="word flex items-center justify-center gap-3 mb-7 w-1/2 h-10 ">
           {characters.map((item, index) => {
             return (
@@ -115,21 +126,15 @@ export const Play = () => {
           })}
         </div>
         <div className=" KeyBoard w-[700px] flex flex-wrap gap-2 justify-center">
-          {/*  bg-green-900 */}
           {KeyBoard.map((item, index) => {
             return (
-              <Link
+              <button
                 key={index}
-                to={count > 4 ? "/end" : `/play/${item.letter}`}
+                onClick={(e) => showCharacters(e, item)}
+                className={` w-10 h-10 flex items-center justify-center ${item.bg} hover:bg-green-500  text-white font-semibold rounded-lg shadow-xl`}
               >
-                {" "}
-                <button
-                  onClick={(e) => showCharacters(e, item)}
-                  className={` w-10 h-10 flex items-center justify-center ${item.bg} hover:bg-green-500  text-white font-semibold rounded-lg shadow-xl`}
-                >
-                  <p className="">{item.letter}</p>
-                </button>
-              </Link>
+                <p className="">{item.letter}</p>
+              </button>
             );
           })}
         </div>
@@ -138,4 +143,4 @@ export const Play = () => {
     </div>
   );
 };
-//ejemplo
+////////////////////******Prueba******////////////////////////////////////////

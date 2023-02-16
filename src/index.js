@@ -6,6 +6,9 @@ import { RootLayout } from "./routes/RootLayout";
 import { Home } from "./routes/Home";
 import { Play } from "./routes/Play";
 import { Contexto } from "./routes/context/Contexto";
+import { Images } from "./routes/Images";
+import { EndPlay } from "./routes/EndPlay";
+import { Winner } from "./routes/Winner";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +23,22 @@ const router = createBrowserRouter([
   {
     path: "/play",
     element: <Play />,
+    children:[
+      {
+        path:"/play/:idfoto",
+        element: <Images/>
+      }
+    ],
+  },
+  {
+    path:"/end",
+    element:<EndPlay/>,
+    
+  },
+  {
+    path:"/winner",
+    element:<Winner/>,
+    
   },
 ]);
 

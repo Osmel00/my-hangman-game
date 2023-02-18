@@ -81,8 +81,9 @@ export const Play = () => {
         return element;
       })
     );
-
+    console.log(`contadorPlay: ${count}`);
     if (count > 4) {
+      
       navigate("/end");
       objQ.splice(random, 1);
       let newarr = [...objQ];
@@ -103,11 +104,11 @@ export const Play = () => {
       item.bg = "bg-red-800";
     }
   }
-
+    console.log(characters);
   return (
-    <div className="w-[1300px] min-h-max  mx-auto">
-      <div className=" border-spacing-1 mx-auto bg-gradient-to-r from-green-300 via-green-700 flex flex-col items-center text-white max-w-screen-xl h-[800px] pt-20 shadow-2xl rounded-xl">
-        <p className=" text-center title text-5xl pb-10 text-green-900 font-semibold">
+    <div className="w-[1300px] min-h-max mx-auto">
+      <div className=" border-spacing-1 mx-auto bg-gradient-to-r from-green-300 via-green-700 flex flex-col items-center text-white max-w-screen-xl xl:h-[800px] xl:pt-20 shadow-2xl rounded-xl md:h-[600px] md:pt-10">
+        <p className="title text-center  xl:text-5xl xl:pb-10 text-green-900 font-semibold md:text-4xl md:pb-6">
           {objQ.length <= random
             ? objQ[random - 1].pregunta
             : objQ[random].pregunta}
@@ -118,7 +119,7 @@ export const Play = () => {
             return (
               <div
                 key={index}
-                className="border-b border-green-900 w-10 h-10 flex justify-center items-center  text-4xl "
+                className="border-b border-green-900 w-10 h-10 flex justify-center items-center  xl:text-4xl md:text-3xl"
               >
                 {item.Visible && <span className="">{item.item}</span>}
               </div>
